@@ -1,0 +1,56 @@
+{
+  "visuel": [
+    {
+      "id": "V1",
+      "question": "À part les organes génitaux et l'apparence physique, quelle différence vous semble la plus marquante et facile à percevoir entre un homme et une femme ?"
+    },
+    {
+      "id": "V2",
+      "question": "Qu'est-ce qui exprime le mieux l'amour selon vous : prononcer une belle phrase simple, ou caresser doucement la joue de l'autre en le regardant, sans dire un mot ?"
+    },
+    {
+      "id": "V3",
+      "question": "Dans un lieu bondé (bus, salle), à part la foule elle-même, qu'est-ce qui vous dérange le plus : le bruit ambiant, ou le contact involontaire avec les autres ?"
+    },
+    {
+      "id": "V4",
+      "question": "Quand vous fermez ou ouvrez une fermeture éclair, faites-vous plus attention au bruit caractéristique qu'elle produit, ou à la sensation de glissement sous vos doigts ?"
+    }
+  ],
+  "auditif": [
+    {
+      "id": "A1",
+      "question": "Selon vous, quel est le rôle le plus essentiel du Soleil pour notre planète (même s'il en a plusieurs) ?"
+    },
+    {
+      "id": "A2",
+      "question": "Quand on vous évoque un matin où vous vous brossez les dents, quelle image ou sensation vous vient immédiatement à l'esprit ?"
+    },
+    {
+      "id": "A3",
+      "question": "Si on vous parle d'un cadavre, quelle première impression sensorielle prédomine selon vous ?"
+    },
+    {
+      "id": "A4",
+      "question": "Lors d'un tremblement de terre, remarquez-vous davantage le mouvement des objets autour de vous, ou les vibrations que vous ressentez dans votre corps ?"
+    }
+  ],
+  "kinesthesique": [
+    {
+      "id": "K1",
+      "question": "Quand on vous évoque le mot « cloche », quelle première association vous vient à l'esprit ?"
+    },
+    {
+      "id": "K2",
+      "question": "Pour retenir et comprendre une définition complexe, préférez-vous l'entendre expliquer clairement, ou la lire et la surligner vous-même ?"
+    },
+    {
+      "id": "K3",
+      "question": "Comment reconnaît-on, sans aucun doute, qu'une personne est en train d'ouvrir une porte ?"
+    },
+    {
+      "id": "K4",
+      "question": "Quand vous avez l'impression de déjà-vu en rencontrant quelqu'un, sur quoi repose principalement cette sensation : un visage familier, ou une voix que vous avez déjà entendue ?"
+    }
+  ]
+}

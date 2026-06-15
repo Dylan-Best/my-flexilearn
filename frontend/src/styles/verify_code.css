@@ -1,0 +1,48 @@
+.boite-code{
+  display: flex;
+  flex-direction: column;
+  background: url(../assets/images/quiz_background.png) center/cover;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.code-container {
+  background: #ffffffa8;
+  padding: 40px;
+  width: 350px;
+
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.code-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.code-inputs input {
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  text-align: center;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  outline: none;
+}
+
+.code-inputs input:focus {
+  border-color: #4f46e5;
+}
+
+button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+}

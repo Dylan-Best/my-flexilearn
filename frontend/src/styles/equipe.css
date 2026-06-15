@@ -1,0 +1,134 @@
+/* ===== EQUIPE PAGE ===== */
+
+.equipe-hero {
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 25px auto 0;
+  box-shadow: 0 0 10px 10px rgb(26 35 119 / 21%);
+  border-radius: 18px;
+}
+
+.equipe-hero h1 {
+  color: #324241;
+  font-size: 60px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.equipe-hero p {
+  
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===== GRILLE DES MEMBRES ===== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  padding: 2rem clamp(1rem, 5vw, 4rem) 4rem;
+  margin: 0 auto;
+}
+
+/* ===== CARTE MEMBRE ===== */
+.team-card {
+
+  background-color: #ffffff8b;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 0 10px 10px rgb(26 35 119 / 21%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Avatar */
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e8f0fe;
+  margin-bottom: 0.75rem;
+}
+
+/* Nom */
+.team-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #324241;
+  margin: 0;
+}
+
+/* Rôle — badge pill */
+.team-role {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #4361ee;
+  background: #eef1fd;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin: 0.25rem 0 0.5rem;
+}
+
+/* Description */
+.team-description {
+  font-size: 0.92rem;
+  color: #666;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.25rem 3rem;
+  }
+
+  .equipe-hero {
+    padding: 2.5rem 1.25rem 1.5rem;
+  }
+}
+/* Contacts */
+.team-contacts {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: left;
+  font-size: 0.85rem;
+  border-top: 1px solid #eee;
+  padding-top: 0.75rem;
+}
+
+.team-contact-item {
+  margin: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  word-break: break-all;
+}
+
+.team-contact-item a {
+  color: #18534F;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.team-contact-item a:hover {
+  color: #32a49c;
+  text-decoration: underline;
+}

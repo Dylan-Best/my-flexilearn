@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: flexilearn-dev
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432       # Port du service visible par le backend
+      targetPort: 5432 # Port réel du conteneur Postgres

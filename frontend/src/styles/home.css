@@ -1,0 +1,254 @@
+/* ================================
+   RESET GLOBAL
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: auto;
+}
+
+body {
+  background: #f6f8fc;
+  color: #111827;
+  overflow-y: auto; /* ✅ scroll GLOBAL */
+}
+
+/* ================================
+   CONTAINER GLOBAL
+================================ */
+.landing-container {
+  background: url(../assets/images/quiz_background.png) center/cover;
+  width: 100%;
+  min-height: 100vh;min-height: 100vh
+  
+}
+
+.navbar {
+  box-shadow: -12px 14px 7px 0px rgb(0 0 0 / 21%);
+  display: flex;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #ffffffde;
+  min-height: 80px;
+  padding: 0 clamp(1.25rem, 5vw, 6.25rem); /* ← remplace les 100px fixes */
+  color: #18534F;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;           /* ← laisse les éléments passer à la ligne */
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  flex-shrink: 0;            /* ← le logo ne rétrécit jamais */
+}
+
+.navbar nav {
+  display: flex;
+  flex-wrap: wrap;           /* ← les liens passent à la ligne si besoin */
+  gap: 12px;                 /* ← réduit depuis 40px */
+}
+
+.navbar nav .nav-link {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: clamp(0.8rem, 2vw, 1rem); /* ← taille fluide */
+  white-space: nowrap;       /* ← texte du bouton ne coupe jamais */
+  color: #fffffffb;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, #2d9992, #18534F);
+}
+
+.navbar nav .nav-link:hover {
+  background: #72ecdab2;
+  color: black;
+}
+
+.navbar nav .nav-link.active {
+  background: #72ecdab2;
+  color: rgb(18, 12, 12);
+}
+
+
+
+/* ================================
+   HERO (SECTION PRINCIPALE)
+================================ */
+.hero {
+  padding: 60px 40px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: start; /* ❗ PAS centré verticalement */
+  gap: 40px;
+  border: 3px solid rgb(29, 115, 124);
+  box-shadow: 0 0 10px 10px rgb(26 35 119 / 21%);
+  border-radius: 18px;
+  margin: 40px
+}
+.hero-left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+
+.hero-left h1 {
+  text-align: center;
+  max-width: 580px;
+  font-weight: 800;
+  color: #324241;
+  font-size: 60px;
+  line-height: 1.1;
+}
+
+.hero-left p {
+  text-align: center;
+  margin: 24px 0;
+  font-size: 19px;
+  color: #18534F;
+  max-width: 480px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #32a49c, #18534F);
+  color: white;
+  padding: 18px 44px;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 12px;
+  box-shadow: 0 10px 25px rgba(46, 128, 137, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  color: #151d1c;
+   background: #72ecdab2;
+}
+
+.hero-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.hero-right img {
+  width: 420px;
+  max-width: 100%;
+}
+
+/* ================================
+   FEATURES
+================================ */
+.features {
+  padding:10px 60px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+.feature-card {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffffde;
+  box-shadow: -12px 14px 7px 0px rgb(0 0 0 / 21%);
+  border-radius: 15px;
+ ;
+}
+
+.feature-card img {
+  width: 52px;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #18534F;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #18534F;;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+/* ================================
+   RESPONSIVE (PROPRE)
+================================ */
+@media (max-width: 1200px) {
+  .navbar,
+  .hero,
+  .features {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+/* Sur très petit écran, centrer logo + nav */
+@media (max-width: 480px) {
+  .navbar {
+    justify-content: center;
+    padding: 12px 1.25rem;
+  }
+
+  .navbar nav {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .hero-right {
+    justify-content: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 24px;
+  }
+
+  .hero,
+  .features {
+    padding: 40px 24px;
+  }
+
+  .hero-left h1 {
+    font-size: 42px;
+  }
+}

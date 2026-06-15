@@ -1,0 +1,835 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+/* Reset & Base - Scoped to userspace */
+.userspace-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.userspace-page .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Main Container */
+.userspace-page {
+  min-height: 100vh;
+    background: url(../assets/images/quiz_background.png) center/cover;
+  color: #111418;
+  transition: background-color 0.2s, color 0.2s;
+  font-family: 'Lexend', sans-serif;
+}
+
+.userspace-page.dark {
+  background-color: #0f1323;
+  color: white;
+}
+
+.userspace-page .page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Top Navigation Bar */
+.userspace-page .top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 1px solid #dbe0e6;
+  padding: 0.875rem 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.userspace-page.dark .top-nav {
+  background-color: #1a2530;
+  border-bottom-color: #2d3b4b;
+}
+
+.userspace-page .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userspace-page .logo-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #18a89e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userspace-page .logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.userspace-page .logo-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.userspace-page .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.userspace-page .nav-links {
+  display: none;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.userspace-page .nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.userspace-page .nav-link:hover { color: #18a89e; }
+
+.userspace-page .nav-link.active {
+  color: #18a89e;
+  font-weight: 600;
+  position: relative;
+}
+
+.userspace-page .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #18a89e;
+}
+
+.userspace-page .nav-link-disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+.userspace-page .nav-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  background-color: #18a89e;
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  text-transform: uppercase;
+}
+
+.userspace-page .nav-badge.coming-soon { background-color: #F59E0B; }
+
+.userspace-page .user-info-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background-color: rgba(24, 168, 158, 0.1);
+  border-radius: 1.5rem;
+}
+
+.userspace-page .user-avatar-small {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #18a89e, #7dd3c0);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.userspace-page .user-name-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #18a89e;
+}
+
+.userspace-page .logout-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  color: #617589;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.userspace-page .logout-button:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.userspace-page .logout-button .material-symbols-outlined { font-size: 1.25rem; }
+
+/* Main Section — full width, generous padding */
+.userspace-page .main-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.userspace-page .content-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;          /* ← full width, no max-width cap */
+  gap: 2rem;
+}
+
+/* Hero Section */
+.userspace-page .hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.userspace-page .hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.userspace-page .hero-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: -0.033em;
+  line-height: 1.2;
+}
+
+.userspace-page .hero-subtitle {
+  color: #617589;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.userspace-page.dark .hero-subtitle { color: #a1b2c4; }
+
+.userspace-page .highlight-text {
+  color: #18a89e;
+  font-weight: 700;
+}
+
+.userspace-page .hero-buttons { display: flex; gap: 0.75rem; }
+
+.userspace-page .btn-secondary,
+.userspace-page .btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 84px;
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  border-radius: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.userspace-page .btn-secondary {
+  background-color: #1F2937;
+  color: white;
+}
+
+.userspace-page .btn-secondary:hover { background-color: #374151; }
+
+.userspace-page .btn-primary {
+  background-color: #E5E7EB;
+  color: #4B5563;
+}
+
+.userspace-page .btn-primary:hover { background-color: #D1D5DB; }
+
+.userspace-page .btn-secondary .material-symbols-outlined,
+.userspace-page .btn-primary .material-symbols-outlined { font-size: 1.25rem; }
+
+/* Breakdown Grid */
+.userspace-page .breakdown-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Breakdown Card */
+.userspace-page .breakdown-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  border: 1px solid #dbe0e6;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.userspace-page.dark .breakdown-card {
+  background-color: #1a2530;
+  border-color: #2d3b4b;
+}
+
+.userspace-page .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userspace-page .card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.userspace-page .status-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(24, 168, 158, 0.1);
+  color: #18a89e;
+  border-radius: 0.25rem;
+}
+
+.userspace-page .chart-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.5rem 0;
+}
+
+/* Donut Chart */
+.userspace-page .donut-wrapper { flex-shrink: 0; }
+
+.userspace-page .donut-chart {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userspace-page .donut-center {
+  width: 8rem;
+  height: 8rem;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userspace-page.dark .donut-center { background-color: #1a2530; }
+
+.userspace-page .donut-percentage {
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: #18a89e;
+}
+
+.userspace-page .donut-label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #617589;
+}
+
+/* Legend */
+.userspace-page .legend-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  flex: 1;
+}
+
+.userspace-page .progress-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.userspace-page .progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.userspace-page .progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.userspace-page .progress-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userspace-page .dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+.userspace-page .dot-visual     { background-color: #18a89e; }
+.userspace-page .dot-auditory   { background-color: #7dd3c0; }
+.userspace-page .dot-kinesthetic{ background-color: #d4f1f4; }
+.userspace-page.dark .dot-kinesthetic { background-color: #5fb3a8; }
+
+.userspace-page .progress-value { font-size: 0.875rem; font-weight: 700; }
+
+.userspace-page .progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  background-color: #f5f6f8;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.userspace-page.dark .progress-bar { background-color: #2d3b4b; }
+
+.userspace-page .progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}
+
+.userspace-page .progress-visual     { background-color: #18a89e; }
+.userspace-page .progress-auditory   { background-color: #7dd3c0; }
+.userspace-page .progress-kinesthetic{ background-color: #d4f1f4; }
+.userspace-page.dark .progress-kinesthetic { background-color: #5fb3a8; }
+
+.userspace-page .quote-text {
+  font-size: 0.875rem;
+  color: #617589;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.userspace-page.dark .quote-text { color: #a1b2c4; }
+
+/* Primary Style Card */
+.userspace-page .style-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #18a89e 0%, #7dd3c0 100%);
+  color: white;
+  box-shadow: 0 20px 40px rgba(24, 168, 158, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.userspace-page .style-bg-icon {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 8rem;
+  height: 8rem;
+  opacity: 0.1;
+}
+
+.userspace-page .style-bg-icon .material-symbols-outlined { font-size: 7.5rem; }
+
+.userspace-page .style-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.userspace-page .style-info {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.userspace-page .style-icon-box {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.userspace-page .style-icon-box .material-symbols-outlined { font-size: 2.5rem; }
+
+.userspace-page .style-name { font-size: 1.5rem; font-weight: 900; }
+
+.userspace-page .style-desc {
+  color: rgba(255,255,255,0.8);
+  margin-top: 0.5rem;
+  font-weight: 300;
+}
+
+.userspace-page .style-traits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.userspace-page .trait-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.userspace-page .trait-item .material-symbols-outlined { font-size: 1rem; }
+
+/* Tips Section */
+.userspace-page .tips-section { margin-top: 1rem; }
+
+.userspace-page .section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userspace-page .section-title .material-symbols-outlined { color: #18a89e; }
+
+.userspace-page .tips-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Tip Card */
+.userspace-page .tip-card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  border: 1px solid #dbe0e6;
+  transition: border-color 0.2s;
+  cursor: default;
+}
+
+.userspace-page.dark .tip-card {
+  background-color: #1a2530;
+  border-color: #2d3b4b;
+}
+
+.userspace-page .tip-card:hover { border-color: #18a89e; }
+
+.userspace-page .tip-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: rgba(24, 168, 158, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+}
+
+.userspace-page .tip-card:hover .tip-icon {
+  background-color: #18a89e;
+  color: white;
+}
+
+.userspace-page .tip-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.userspace-page .tip-description {
+  color: #617589;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.userspace-page.dark .tip-description { color: #a1b2c4; }
+
+/* Tools Section */
+.userspace-page .tools-section {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #dbe0e6;
+}
+
+.userspace-page.dark .tools-section { border-color: #2d3b4b; }
+
+.userspace-page .tools-header {
+  background-color: white;
+  padding: 1.5rem;
+  border-bottom: 1px solid #dbe0e6;
+}
+
+.userspace-page.dark .tools-header {
+  background-color: #1a2530;
+  border-bottom-color: #2d3b4b;
+}
+
+.userspace-page .tools-title { font-size: 1.25rem; font-weight: 700; }
+
+.userspace-page .tools-subtitle { font-size: 0.875rem; color: #617589; }
+
+.userspace-page.dark .tools-subtitle { color: #a1b2c4; }
+
+.userspace-page .tools-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid #dbe0e6;
+}
+
+.userspace-page.dark .tools-grid { border-top-color: #2d3b4b; }
+
+/* Tool Item */
+.userspace-page .tool-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: white;
+  transition: background-color 0.2s;
+}
+
+.userspace-page.dark .tool-item { background-color: #1a2530; }
+
+.userspace-page .tool-item:hover { background-color: #f5f6f8; }
+
+.userspace-page.dark .tool-item:hover { background-color: rgba(15, 19, 35, 0.5); }
+
+.userspace-page .tool-image {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.userspace-page .tool-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.userspace-page .tool-name { font-weight: 700; }
+
+.userspace-page .tool-desc { font-size: 0.75rem; color: #617589; }
+
+.userspace-page.dark .tool-desc { color: #a1b2c4; }
+
+/* CTA Section */
+.userspace-page .cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  background-color: rgba(24, 168, 158, 0.05);
+  border-radius: 0.75rem;
+  border: 2px dashed rgba(24, 168, 158, 0.3);
+}
+
+.userspace-page .cta-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.userspace-page .cta-text {
+  color: #617589;
+  max-width: 28rem;
+  margin-bottom: 1.5rem;
+}
+
+.userspace-page.dark .cta-text { color: #a1b2c4; }
+
+.userspace-page .cta-button {
+  background-color: #18a89e;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 1.5rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(24, 168, 158, 0.3);
+}
+
+.userspace-page .cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(24, 168, 158, 0.4);
+}
+
+.userspace-page .cta-button-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #9ca3af;
+}
+
+.userspace-page .cta-button-disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);
+  background-color: #9ca3af;
+}
+
+/* Footer */
+.userspace-page .page-footer {
+  border-top: 1px solid #dbe0e6;
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+}
+
+.userspace-page.dark .page-footer {
+  border-top-color: #2d3b4b;
+  background-color: #1a2530;
+}
+
+.userspace-page .footer-copyright { font-size: 0.875rem; color: #617589; }
+
+.userspace-page.dark .footer-copyright { color: #a1b2c4; }
+
+.userspace-page .footer-links { display: flex; gap: 1.5rem; font-size: 0.875rem; }
+
+.userspace-page .footer-link {
+  color: #617589;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.userspace-page.dark .footer-link { color: #a1b2c4; }
+
+.userspace-page .footer-link:hover { color: #18a89e; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — full width at every breakpoint
+══════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .userspace-page .nav-links {
+    display: flex;
+  }
+
+  .userspace-page .chart-section {
+    flex-direction: row;
+  }
+
+  .userspace-page .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .userspace-page .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .userspace-page .tool-item:not(:last-child) {
+    border-right: 1px solid #dbe0e6;
+  }
+
+  .userspace-page.dark .tool-item:not(:last-child) {
+    border-right-color: #2d3b4b;
+  }
+
+  .userspace-page .page-footer {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* ← Suppression du padding 10rem qui rétrécissait tout */
+  .userspace-page .main-section {
+    padding: 2.5rem;
+  }
+
+  .userspace-page .top-nav {
+    padding: 0.875rem 2.5rem;
+  }
+
+  .userspace-page .page-footer {
+    padding: 2rem 2.5rem;
+  }
+
+  /* Breakdown : 2 colonnes, la carte prend 2/3 */
+  .userspace-page .breakdown-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  /* Tips : 3 colonnes */
+  .userspace-page .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .userspace-page .nav-badge {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .userspace-page .nav-badge { display: none; }
+}
+
+@media (max-width: 768px) {
+  .userspace-page .user-name-text { display: none; }
+}
+
+@media (max-width: 640px) {
+  .userspace-page .hero-title { font-size: 1.75rem; }
+  .userspace-page .hero-subtitle { font-size: 1rem; }
+  .userspace-page .hero-buttons { width: 100%; flex-direction: column; }
+  .userspace-page .btn-secondary,
+  .userspace-page .btn-primary { width: 100%; }
+  .userspace-page .breakdown-card { padding: 1.5rem; }
+  .userspace-page .style-card { padding: 1.5rem; }
+  .userspace-page .donut-chart { width: 10rem; height: 10rem; }
+  .userspace-page .donut-center { width: 6.5rem; height: 6.5rem; }
+}

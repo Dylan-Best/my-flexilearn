@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flexilearn-backend
+  namespace: flexilearn-dev
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: flexilearn-backend:prod
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://admin:admin@postgres-service:5432/flexilearn" # Remplace par ta vraie chaîne
+        - name: EMAIL_ADDRESS
+          value: "flexilearn575@gmail.com"
+        - name: EMAIL_PASSWORD
+          value: "ltacwohfnqetirng"
+        - name: GEMINI_API_KEY
+          value: "AIzaSyAeZZUfbpE9f2E5SmQvDWRErffLJTDGUU8" 
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000

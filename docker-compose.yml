@@ -1,0 +1,138 @@
+version: '3.8'
+services:
+
+  traefik:
+    image: traefik:v3.1
+    container_name: traefik_proxy
+    env_file: .env
+    user: "0:${DOCKER_GID}"
+    command:
+      - "--global.checknewversion=false"
+      - "--global.sendanonymoususage=false"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80" # Point d'entrée de tous les trafics
+      - "8080:8080" #dashboard
+    networks:
+      - app_network
+    volumes:
+      - ./certs:/letsencrypt
+      - ./log:/log
+      - /var/run/docker.sock:/var/run/docker.sock:ro # detection des conteneurs qui demarre
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db_prod
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+    restart: unless-stopped
+    # Sécurité : Limite les ressources pour éviter qu'un crash de la DB sature le serveur
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    # ESSENTIEL : Assure que PostgreSQL est réellement prêt avant que le backend ne démarre
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      #dockerfile: Dockerfile 
+    image: flexilearn-backend:prod
+    container_name: fastapi_backend_prod
+    env_file: .env
+    #ports:
+      #- "127.0.0.1:8000:8000" # Sécurité : Accessible uniquement en local (ou via un reverse proxy sur la machine)
+    networks:
+      - app_network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 1G
+    # Attend que la DB soit totalement opérationnelle (Healthy)
+    depends_on:
+      db:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      # Règle de routage : Si l'URL est api.flexilearn.local, ça va vers FastAPI
+      - "traefik.http.routers.backend.rule=Host(`api.flexilearn.local`)"
+      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    image: flexilearn-frontend:prod
+    container_name: react_frontend_prod
+    networks:
+      - app_network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    depends_on:
+      - backend
+    labels:
+      - "traefik.enable=true"
+      # Règle de routage : Si l'URL est flexilearn.local, ça va vers React
+      - "traefik.http.routers.frontend.rule=Host(`flexilearn.local`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+  
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins_ci_prod
+    user: root
+    # PLUS DE PORTS EXPOSÉS SUR L'HÔTE (On évite le conflit du 8080)
+    # ports:
+    #   - "8080:8080" 
+    ports:
+      - "50000:50000" # On garde juste le port des agents au cas où
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+    networks:
+      - app_network # On le connecte au même réseau que Traefik
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+    labels:
+      - "traefik.enable=true"
+      # URL pour accéder à Jenkins
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.flexilearn.local`)"
+      - "traefik.http.routers.jenkins.entrypoints=web"
+      # On dit à Traefik de chercher le port 8080 À L'INTÉRIEUR du conteneur Jenkins
+      - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
+
+
+volumes:
+  postgres_data:
+    name: flexilearn_postgres_prod_data
+  jenkins_data:
+    name: jenkins_prod_data 
+
+networks:
+  app_network:
+    driver: bridge
+    name: flexilearn_prod_network

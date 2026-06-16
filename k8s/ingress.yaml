@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flexilearn-ingress
+  namespace: flexilearn-dev
+  annotations:
+    # Cette annotation est importante pour que Nginx gère bien les redirections si nécessaire
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: flexilearn.local  # L'adresse DNS qu'on utiliser sur ton PC
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service # Il envoie tout le trafic vers ton front
+            port:
+              number: 80

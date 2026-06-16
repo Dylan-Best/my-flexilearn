@@ -3,6 +3,7 @@ backend/explication.txt
 base_de_donne.txt
 .env
 .env.example
+./k8s/postgres/postgres-secret.yaml
 explication
 # Logs
 logs

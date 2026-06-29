@@ -44,8 +44,13 @@ pipeline {
         }
 
         stage(' Continuous Deployment') {
-            when {
-                branch anyOf: ['main', 'dev', 'master']
+           when {
+                // anyOf doit contenir une liste de conditions branch individuelles
+                anyOf {
+                    branch 'main'
+                    branch 'dev'
+                    branch 'master'
+                }
             }
             steps {
                 echo "Verification si le packet envsubst .."

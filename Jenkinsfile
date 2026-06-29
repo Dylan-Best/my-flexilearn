@@ -34,6 +34,7 @@ pipeline {
                                                  usernameVariable: 'DOCKER_USER', 
                                                  passwordVariable: 'DOCKER_PASS')]) {
                     echo 'Connexion sécurisée à Docker Hub...'
+                    sh 'if [ -z "$DOCKER_USER" ]; then echo "DOCKER_USER est VIDE"; else echo "DOCKER_USER est CHARGÉ"; fi'
                     sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
                     
                     echo 'Publication des images...'

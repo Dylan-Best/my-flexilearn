@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'Analyse du code source Python...'
                 sh 'pip install bandit --break-system-packages || true'
-                sh 'bandit -r backend/ -f txt -o bandit-sast-report.txt || true'
+                sh 'bandit -r /backend -f txt -o bandit-sast-report.txt || true'
             }
         }
 

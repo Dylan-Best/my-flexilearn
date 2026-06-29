@@ -55,7 +55,7 @@ pipeline {
             }
             steps {
                 echo "Verification si le packet envsubst .."
-                sh 'sudo apt-get update && sudo apt-get install -y gettext'
+                sh 'apt-get update && apt-get install -y gettext'
                 echo "Déploiement de l'image Docker Hub sur Minikube..."
                 sh "./scripts/deploy.sh ${IMAGE_TAG}"
             }

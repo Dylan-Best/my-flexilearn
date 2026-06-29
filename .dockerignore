@@ -1,0 +1,4 @@
+.env
+/k8s/postgres/postgres-secrets.yaml
+/k8s/encryption-config.yaml
+/k8s/user/

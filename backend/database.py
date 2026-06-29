@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 import os 
 
+#creer une fonction si le .env existe sinon cherche le fichier
 DATABASE_URL = os.getenv("DATABASE_URL") # dans le fichier .env
 engine = create_engine(DATABASE_URL)
 

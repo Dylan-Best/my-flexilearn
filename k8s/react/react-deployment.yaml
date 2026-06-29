@@ -14,6 +14,15 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: flexilearn-frontend:prod
+        image: ${FRONTEND_IMAGE}:{IMAGE_TAG}
         ports:
         - containerPort: 80
+        
+        #volumeMount:
+        
+        #  - name: config 
+        #    mountPath: "/etc/nginx/config.d"
+      #volumes: 
+      #- name: config
+      #  configMap:
+      #    name: nginx-settings

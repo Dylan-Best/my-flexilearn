@@ -14,16 +14,40 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: flexilearn-backend:prod
+        image: ${BACKEND_IMAGE}:${IMAGE_TAG} # <-injecter par jenkins
         env:
         - name: DATABASE_URL
-          value: "postgresql://admin:admin@postgres-service:5432/flexilearn" # Remplace par ta vraie chaîne
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: database-url
+          
+          # Remplace par ta vraie chaîne
         - name: EMAIL_ADDRESS
-          value: "flexilearn575@gmail.com"
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: email-address
         - name: EMAIL_PASSWORD
-          value: "ltacwohfnqetirng"
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: email-password
         - name: GEMINI_API_KEY
-          value: "AIzaSyAeZZUfbpE9f2E5SmQvDWRErffLJTDGUU8" 
-        imagePullPolicy: Never
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: gemini-api-key
+
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
+        
+        #volumeMounts:
+        #- name: secrets-volume
+          #mountPath: "/etc/flexilearn/secrets" # creer automatiquement
+          #readOnly: true
+     # volumes:
+      #- name: secrets-volume
+       # secret:
+        #secretName: postgres-secrets # Le nom de ton Secret K8s

@@ -1,0 +1,11 @@
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+    providers:
+      - aescbc: # Utilisation du chiffrement AES-CBC
+          keys:
+            - name: nom_cle
+              secret: "" # Colle une clé générée 
+      - identity: {} # Fallback requis

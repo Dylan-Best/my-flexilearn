@@ -16,14 +16,23 @@ spec:
       containers:
       - name: postgres
         image: postgres:15-alpine
-        imagePullPolicy: Never # <--- Utilise l'image locale de Minikube sans Internet
+        imagePullPolicy: IfNotPresent # <--- Utilise l'image locale de Minikube sans Internet
         env:
-        - name: POSTGRES_USER
-          value: "admin"
-        - name: POSTGRES_PASSWORD
-          value: "admin" # En vraie prod, on utiliserait un Secret K8s
         - name: POSTGRES_DB
-          value: "flexilearn"
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: postgres-db
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: postgres-password
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: postgres-user
         ports:
         - containerPort: 5432
         volumeMounts:
